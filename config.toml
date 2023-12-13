@@ -1,0 +1,15 @@
+[settings]
+firsttime = "yes"
+
+[preferances]
+subreddit = "TIFU"
+
+[reddit login]
+client_id="WG3ezIr2eqgmLLyZEFTEKA"
+client_secret="jaUS5N0VkStEm0zBNKGBvZW29ICdEA"
+user_agent="test"
+username="teamtijmi"
+password="@Thijmen18"
+
+[tiktok]
+session_id="54e28104b2b95545bdb4ed911b9e08ab"
