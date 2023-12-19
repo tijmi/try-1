@@ -10,11 +10,11 @@ def reddittop(subreddit):
         config = toml.load(f)
 
     reddit = praw.Reddit(
-        client_id=config['reddit']['client_id'],
-        client_secret=config['reddit']['client_secret'],
-        user_agent=config['reddit']['user_agent'],
-        username=config['reddit']['username'],
-        password=config['reddit']['password'],
+        client_id=config['redditlogin']['client_id'],
+        client_secret=config['redditlogin']['client_secret'],
+        user_agent=config['redditlogin']['user_agent'],
+        username=config['redditlogin']['username'],
+        password=config['redditlogin']['password'],
     )
     
     topics_dict = {
