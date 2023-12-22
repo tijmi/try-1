@@ -1,8 +1,9 @@
 [settings]
 firsttime = "yes"
+background = "woodworking"
 
 [preferances]
-subreddit = "tifu"
+subreddit = "AmItheAsshole"
 voice = "streamlabspolly"
 
 [redditlogin]

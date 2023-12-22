@@ -1,7 +1,7 @@
 import pyttsx3
 
 
-def pyttsx(text, titles):
+def pyttsx(text, path, titles):
     engine = pyttsx3.init()
-    engine.save_to_file(text, rf".\assets\temp\{titles}\audio\{titles}.mp3")
+    engine.save_to_file(text, rf"{path}/{titles}.mp3")
     engine.runAndWait()

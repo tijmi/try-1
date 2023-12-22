@@ -5,6 +5,7 @@ from moviepy.editor import AudioFileClip
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.video.fx.all import crop
 import random
+import toml
 
 
 def combine_audio(vidname, audname, outname, fps=60):
@@ -17,7 +18,10 @@ def combine_audio(vidname, audname, outname, fps=60):
     final_clip.close()
 
 
-def cut_video_to_mp3_length(video_path, mp3_path, output_path):
+def cut_video_to_mp3_length(mp3_path, output_path):
+    with open("config.toml", "r") as f:
+        config = toml.load(f)
+    video_path = rf"./assets/backgrounds/video/{config['settings']['background']}.mp4"
     AudioSegment.converter = r"C:\\PATH_Programs\\ffmpeg.exe"
     audio = AudioFileClip(mp3_path)
     background = mpe.VideoFileClip(video_path)
@@ -49,8 +53,11 @@ def make_video_916(video_path, output_path):
     cropped_clip.close()
 
 
-def editvideo(vidname, audname, outname, title):
+def editvideo(audname, outname, title):
     os.path.abspath(audname)
-    cut_video_to_mp3_length(vidname, audname, rf".\assets\temp\{title}\tempbackground.mp4")
-    make_video_916(rf".\assets\temp\{title}\tempbackground.mp4", rf".\assets\temp\{title}\background.mp4")
+    cut_video_to_mp3_length(audname, rf".\assets\temp\{title}\tempbackground.mp4")
+    make_video_916(
+        rf".\assets\temp\{title}\tempbackground.mp4",
+        rf".\assets\temp\{title}\background.mp4",
+    )
     combine_audio(rf".\assets\temp\{title}\background.mp4", audname, outname)

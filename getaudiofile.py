@@ -1,26 +1,14 @@
-from textwrap import TextWrapper
-from tqdm import tqdm
 from pydub import AudioSegment
 from pathlib import Path
 import toml
 import ttsvoices.pyttsx as pptts
 import re
 import ttsvoices.streamlabspolly as streamlabs
-import random
-import time
+from ttsvoices.longstring import preparetext
 
 
 with open("config.toml", "r") as f:
     config = toml.load(f)
-
-
-def checkifstringlong(text, maxlength=int):
-    numofcharacters = len(text)
-    print(numofcharacters)
-    if numofcharacters > maxlength:
-        w = TextWrapper(maxlength, break_long_words=False)
-        return w.wrap(text)
-    return text
 
 
 def preparetext(text, title):
@@ -38,8 +26,13 @@ def preparetext(text, title):
     text = re.sub(r'\."\.', '".', text)
     return text
 
+ttsengines = [
+    (lambda x: config["preferances"]["voice"] == "pyttsx3", pptts.pyttsx),
+    (lambda x: config["preferances"]["voice"] == "streamlabspolly", streamlabs.streamlabspolly)
+]
 
-def tts(texts, titles, text_speaker: str = "en_us_002"):
+
+def tts(texts, titles,):
     AudioSegment.converter = r"C:\PATH_Programs\ffmpeg.exe"
     tottext = preparetext(texts, titles)
     specialcharacters = r"(!?[^A-Za-z0-9 ])"
@@ -49,21 +42,8 @@ def tts(texts, titles, text_speaker: str = "en_us_002"):
     titles = titles.replace(".", "")
     path = Path(rf"./assets/temp/{titles}/audio")
     path.mkdir(parents=True, exist_ok=True)
-    # if config["settings"]["voice"] == "tiktok":   
-    #     text = checkifstringlong(tottext)
-    #     for idx, texts in enumerate(tqdm(text)):
-    #         if idx != 0:
-    #             title = titles + str(idx)
-    #             print(titles)
-    #             ttstomp3tt(texts, title, text_speaker)
-    #             part1 = AudioSegment.from_mp3(f"./assets/temp/{titles}/audio/{titles}.mp3")
-    #             part2 = AudioSegment.from_mp3(f"./assets/temp/{titles}/audio/{title}.mp3")
-    #             complete = part1 + part2
-    #             complete.export(f".assets/temp/{titles}/audio/{titles}.mp3", format="mp3")
+    for check, function in ttsengines:
+                if check(ttsengines):
+                    function(tottext, path, titles)
+                    break
 
-    #         else:
-    #             ttstomp3tt(texts, titles, text_speaker)
-    if config["preferances"]["voice"] == "pyttsx3":
-        pptts.pyttsx(tottext, titles)
-    elif config["preferances"]["voice"] == "streamlabspolly":
-        streamlabs.streamlabspolly(tottext, f"{path}/{titles}.mp3")
