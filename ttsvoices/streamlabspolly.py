@@ -3,6 +3,7 @@ from requests.exceptions import JSONDecodeError
 import ttsvoices.longstring as longstring
 from tqdm import tqdm
 from pydub import AudioSegment
+import time
 
 voices = [
     "Brian",
@@ -24,7 +25,7 @@ voices = [
 
 
 def streamlabspolly(text, path, title, voice="Matthew"):
-    text = longstring.checkifstringlong(text, 550)
+    text = longstring.checkifstringlong(text, 500)
     print(text)
     url = "https://streamlabs.com/polly/speak"
     for idx, texts in enumerate(tqdm(text)):
@@ -33,14 +34,14 @@ def streamlabspolly(text, path, title, voice="Matthew"):
         try:
             voice_data = requests.get(response.json()["speak_url"])
             if idx != 0:
-                with open(f"{path}/{title}{idx}.mp3", "wb") as f:
+                with open(rf"{path}/{title}{idx}.mp3", "wb") as f:
                     f.write(voice_data.content)
                 part1 = AudioSegment.from_mp3(f"{path}/{title}.mp3")
                 part2 = AudioSegment.from_mp3(f"{path}/{title}{idx}.mp3")
                 complete = part1 + part2
                 complete.export(f"{path}/{title}.mp3", format="mp3")
             else:
-                with open(f"{path}/{title}.mp3", "wb") as f:
+                with open(rf"{path}/{title}.mp3", "wb") as f:
                     f.write(voice_data.content)
         except (KeyError, JSONDecodeError):
             try:
@@ -48,3 +49,4 @@ def streamlabspolly(text, path, title, voice="Matthew"):
                     raise ValueError("Please specify a text to convert to speech.")
             except (KeyError, JSONDecodeError):
                 print("Error occurred calling Streamlabs Polly")
+
