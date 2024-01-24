@@ -16,36 +16,33 @@ class editvideo:
 
         self.background = config["settings"]["background"]
         self.pathbackground = Path("./assets/backgrounds/video/")
-        self.backgroundvid = self.pathbackground.joinpath(f"{self.background}")#Path("./assets/backgrounds/video") / f"{self.background}.mp4"
+        self.backgroundvid = self.pathbackground.joinpath(f"{self.background}.mp4")
         self.audname = audname
         self.outname = outname
         self.title = title
-        self.path = Path(
-            f"./assets/temp/{self.title})/"
-        )
-        self.backgroundvidtot = self.path.joinpath(f"{self.background}")
-        self.backgroundvidmp3 = self.path.joinpath("tempbackground")
-
+        self.path = Path(f"./assets/temp/{self.title}/")
+        self.backgroundvidtot = self.path.joinpath(f"{self.background}.mp4")
+        self.backgroundvidmp3 = self.path.joinpath("tempbackground.mp4")
 
     def combine_audio(self, fps: int = 60) -> None:
-        background = mpe.VideoFileClip(self.backgroundvidtot)
-        audio = mpe.AudioFileClip(self.audname)
+        background = mpe.VideoFileClip(str(self.backgroundvidtot))
+        audio = mpe.AudioFileClip(str(self.audname))
         final_clip = background.set_audio(audio)
-        final_clip.write_videofile(self.outname, fps=fps)
+        final_clip.write_videofile(str(self.outname), fps=fps)
         background.close()
         audio.close()
         final_clip.close()
 
     def cut_video_to_mp3_length(self) -> None:
         AudioSegment.converter = r"C:\\PATH_Programs\\ffmpeg.exe"
-        audio = AudioFileClip(self.audname)
-        background = mpe.VideoFileClip(self.backgroundvid)
+        audio = mpe.AudioFileClip(str(self.audname))
+        background = mpe.VideoFileClip(str(self.backgroundvid))
         print(background.duration)
         print(audio.duration)
         begintime = random.uniform(0, background.duration - audio.duration)
         print(begintime)
         ffmpeg_extract_subclip(
-            self.backgroundvid,
+            str(self.backgroundvid),
             begintime,
             begintime + audio.duration,
             targetname=self.backgroundvidmp3,
@@ -53,7 +50,7 @@ class editvideo:
         audio.close()
 
     def make_video_916(self) -> None:
-        video = mpe.VideoFileClip(self.backgroundvidmp3)
+        video = mpe.VideoFileClip(str(self.backgroundvidmp3))
         width, height = video.size
         new_width = (height / 16) * 9
         width_margin = int((width - new_width) / 2)
@@ -62,7 +59,7 @@ class editvideo:
             video, x1=width_margin, y1=0, x2=width_margin + new_width, y2=height
         )
         cropped_clip.write_videofile(
-            self.backgroundvidtot,
+            str(self.backgroundvidtot),
             codec="libx264",
             audio_codec="aac",
         )
