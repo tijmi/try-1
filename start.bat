@@ -10,6 +10,7 @@ pip install -r requirements.txt
 
 python main.py
 
-ECHO programm finished
+ECHO programm finished 
+ECHO check output folder for finished product
 
 PAUSE
