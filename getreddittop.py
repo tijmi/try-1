@@ -38,6 +38,7 @@ class reddit:
         )
 
         try:
+            print("getting reddit toppost")
             submission = next(
                 x for x in reddit_api.subreddit(self.subreddit).hot() if not x.stickied
             )
