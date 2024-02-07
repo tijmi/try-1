@@ -1,0 +1,18 @@
+{
+  "voice": ["pyttsx3", "gtts", "streamlabspolly", "tiktok"],
+  "background": [
+    "Hypixel",
+    "minecraft",
+    "GTA",
+    "subway-surfers",
+    "satisfying",
+    "mobile-game",
+    "restocking",
+    "cake",
+    "carpet",
+    "painting",
+    "recipies",
+    "domino",
+    "woodworking"
+  ]
+}

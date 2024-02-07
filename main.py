@@ -9,6 +9,7 @@ import re
 from textwrap import TextWrapper
 import ttsvoices.longstring as ls
 import checkwifi
+import checkconfig 
 
 
 def main() -> None:
@@ -16,6 +17,8 @@ def main() -> None:
         config = toml.load(f)
 
     # checkwifi.internet_connection()
+    cehckconfig = checkconfig.validation()
+    cehckconfig.validatetoml()
     bg.downloadvid()
     reddit = redtop.reddit()
     toppost = reddit.reddittop()
