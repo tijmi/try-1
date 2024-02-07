@@ -12,7 +12,7 @@ with open("config.toml", "r") as f:
 def tiktoktts(text: str, path: str, title: str, voice: str = "en_us_00"):
     text = longstring.checkifstringlong(text, 500)
 
-    session_id = config["tiktok"]["session_id"]
+    session_id = config["tiktok"]["tiktok_session_id"]
 
     headers = {
         "User-Agent": "com.zhiliaoapp.musically/2022600030 (Linux; U; Android 7.1.2; es_ES; SM-G988N; Build/NRD90M;tt-ok/3.12.13.1)",

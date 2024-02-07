@@ -14,13 +14,13 @@ with open("config.toml", "r") as f:
 
 
 ttsengines = [
-    (lambda x: config["preferances"]["voice"] == "pyttsx3", pyttsx),
+    (lambda x: config["preferances"]["ttsengine"] == "pyttsx3", pyttsx),
     (
-        lambda x: config["preferances"]["voice"] == "streamlabspolly",
+        lambda x: config["preferances"]["ttsengine"] == "streamlabspolly",
         streamlabspolly,
     ),
-    (lambda x: config["preferances"]["voice"] == "tiktok", tiktoktts),
-    (lambda x: config["preferances"]["voice"] == "gtts", gtts),
+    (lambda x: config["preferances"]["ttsengine"] == "tiktok", tiktoktts),
+    (lambda x: config["preferances"]["ttsengine"] == "gtts", gtts),
 ]
 
 

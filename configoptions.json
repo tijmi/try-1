@@ -1,5 +1,5 @@
 {
-  "voice": ["pyttsx3", "gtts", "streamlabspolly", "tiktok"],
+  "ttsengine": ["pyttsx3", "gtts", "streamlabspolly", "tiktok"],
   "background": [
     "Hypixel",
     "minecraft",

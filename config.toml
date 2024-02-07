@@ -1,16 +1,16 @@
 [settings]
-background = "GTA"
+background = "minecraft"
 
 [preferances]
-subreddit = "AmItheAsshole"
-voice = "streamlabspolly"
+subreddit = "amItheasshole"
+ttsengine = "gtts"
 
 [redditlogin]
 client_id = "WG3ezIr2eqgmLLyZEFTEKA"
 client_secret = "jaUS5N0VkStEm0zBNKGBvZW29ICdEA"
-user_agent = "test"
+user_agent = "reddit_tts_video_maker"
 username = "teamtijmi"
 password = "@Thijmen18"
 
 [tiktok]
-session_id = "e6647ac779d54b8ef21df9a2ead5340e"
+tiktok_session_id = false

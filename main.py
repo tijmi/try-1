@@ -20,8 +20,7 @@ def main() -> None:
     cehckconfig = checkconfig.validation()
     cehckconfig.validatetoml()
     bg.downloadvid()
-    reddit = redtop.reddit()
-    toppost = reddit.reddittop()
+    toppost = redtop.reddittop()
     title = toppost[0]
     title = ls.preparetitle(title)
 
