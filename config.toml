@@ -1,16 +1,16 @@
 [settings]
-background = "minecraft"
+background = false
 
 [preferances]
-subreddit = "amItheasshole"
-ttsengine = "gtts"
+subreddit = false
+ttsengine = false
 
 [redditlogin]
-client_id = "WG3ezIr2eqgmLLyZEFTEKA"
-client_secret = "jaUS5N0VkStEm0zBNKGBvZW29ICdEA"
+client_id =false
+client_secret = false
 user_agent = "reddit_tts_video_maker"
-username = "teamtijmi"
-password = "@Thijmen18"
+username = false
+password = false
 
 [tiktok]
 tiktok_session_id = false
