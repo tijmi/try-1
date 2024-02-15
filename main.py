@@ -16,7 +16,8 @@ def main() -> None:
     with open("config.toml", "r") as f:
         config = toml.load(f)
 
-
+    cehckconfig = checkconfig.validation()
+    cehckconfig.validatetoml()
     bg.downloadvid()
     toppost = redtop.reddittop(config["preferances"]["subreddit"])
     title = toppost[0]
