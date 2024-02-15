@@ -16,11 +16,9 @@ def main() -> None:
     with open("config.toml", "r") as f:
         config = toml.load(f)
 
-    # checkwifi.internet_connection()
-    cehckconfig = checkconfig.validation()
-    cehckconfig.validatetoml()
+
     bg.downloadvid()
-    toppost = redtop.reddittop()
+    toppost = redtop.reddittop(config["preferances"]["subreddit"])
     title = toppost[0]
     title = ls.preparetitle(title)
 

@@ -26,10 +26,14 @@ ttsengines = [
 
 def tts(texts: str, titles: str, title: str) -> None:
     AudioSegment.converter = r"C:\PATH_Programs\ffmpeg.exe"
+    AudioSegment.converter = r"C:\PATH_Programs\ffmpeg.exe"
     tottext = preparetext(texts, titles)
+    path = Path(rf"./assets/temp/{title}/audio")
     path = Path(rf"./assets/temp/{title}/audio")
     path.mkdir(parents=True, exist_ok=True)
     for check, function in ttsengines:
         if check(ttsengines):
             function(tottext, path, title)
+            function(tottext, path, title)
             break
+
