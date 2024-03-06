@@ -15,7 +15,7 @@ class validation:
         with open("config.toml", "w") as f:
             toml.dump(self.config, f)
 
-    def valueinput(self, setting: str, catagory: str(), options: bool = False) -> None:
+    def valueinput(self, setting: str, catagory: str, options: bool = False) -> None:
         while True:
             if options:
                 possibilities = ", ".join(self.settingsfile[setting])

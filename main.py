@@ -19,7 +19,7 @@ def main() -> None:
     cehckconfig = checkconfig.validation()
     cehckconfig.validatetoml()
     bg.downloadvid()
-    toppost = redtop.reddittop(config["preferances"]["subreddit"])
+    toppost = redtop.reddittop()
     title = toppost[0]
     title = ls.preparetitle(title)
 

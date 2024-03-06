@@ -19,6 +19,8 @@ class editvideo:
         self.backgroundvid = self.pathbackground.joinpath(f"{self.background}.mp4")
         self.audname = audname
         self.outname = outname
+        self.outfolder = Path(f"./outputs/")
+        self.outfolder.mkdir(parents=True, exist_ok=True)
         self.title = title
         self.path = Path(f"./assets/temp/{self.title}/")
         self.backgroundvidtot = self.path.joinpath(f"{self.background}.mp4")

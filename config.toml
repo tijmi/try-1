@@ -1,16 +1,16 @@
 [settings]
-background = false
+background = "woodworking"
 
 [preferances]
-subreddit = false
-ttsengine = false
+subreddit = "AmItheasshole"
+ttsengine = "pyttsx3"
 
 [redditlogin]
-client_id =false
-client_secret = false
-user_agent = "reddit_tts_video_maker"
-username = false
-password = false
+client_id = "D_CzpEhTMVe8AUpbPuNIsA"
+client_secret = "79nIVU5O17hi9QOJ-lol1yjFsGMqhA"
+user_agent = "teamtijmi"
+username = "teamtijmi"
+password = "@Thijmen18"
 
 [tiktok]
 tiktok_session_id = false

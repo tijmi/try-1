@@ -2,7 +2,7 @@
 
 git pull origin master
 
-call venv\Scripts\activate.bat
+call .venv\Scripts\activate.bat
 
 ECHO instaling requirements
 
