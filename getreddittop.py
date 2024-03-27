@@ -4,22 +4,24 @@ import toml
 import prawcore.exceptions as prerror
 from prawcore import NotFound
 import prawcore.exceptions as prerror
-from prawcore import NotFound
+import json
 
 
 
 def sub_exists(subreddit) -> bool:
     with open("config.toml", "r") as f:
         config = toml.load(f)
-    
-    reddit_api = praw.Reddit(
-        client_id= config["redditlogin"]["client_id"],
-        client_secret=config["redditlogin"]["client_secret"],
-        user_agent=config["redditlogin"]["user_agent"],
-        username=config["redditlogin"]["username"],
-        password=config["redditlogin"]["password"],
-    )
-
+    try:
+        reddit_api = praw.Reddit(
+            client_id= config["redditlogin"]["client_id"],
+            client_secret=config["redditlogin"]["client_secret"],
+            user_agent=config["redditlogin"]["user_agent"],
+            username=config["redditlogin"]["username"],
+            password=config["redditlogin"]["password"],
+        )
+    except prerror.ResponseException as e:
+        if e.response.status_code == 401:
+            print("Invalid credentials - please check them in config.toml")
     exists = True
     try:
         reddit_api.subreddits.search_by_name(subreddit, exact=True)
@@ -31,15 +33,22 @@ def reddittop() -> tuple:
     with open("config.toml", "r") as f:
         config = toml.load(f)
 
+    with open("log.json", "r") as f:
+        log = json.load(f)
+
     subreddit = config["preferances"]["subreddit"]
 
-    reddit_api = praw.Reddit(
-        client_id= config["redditlogin"]["client_id"],
-        client_secret=config["redditlogin"]["client_secret"],
-        user_agent=config["redditlogin"]["user_agent"],
-        username=config["redditlogin"]["username"],
-        password=config["redditlogin"]["password"],
-    )
+    try:
+        reddit_api = praw.Reddit(
+            client_id= config["redditlogin"]["client_id"],
+            client_secret=config["redditlogin"]["client_secret"],
+            user_agent=config["redditlogin"]["user_agent"],
+            username=config["redditlogin"]["username"],
+            password=config["redditlogin"]["password"],
+        )
+    except prerror.ResponseException as e:
+        if e.response.status_code == 401:
+            print("Invalid credentials - please check them in config.toml")
 
     try:
         print("getting reddit toppost")

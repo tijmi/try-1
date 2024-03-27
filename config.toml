@@ -2,7 +2,7 @@
 background = "woodworking"
 
 [preferances]
-subreddit = "AmItheasshole"
+subreddit = "askreddit"
 ttsengine = "pyttsx3"
 
 [redditlogin]

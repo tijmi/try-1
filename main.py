@@ -10,6 +10,7 @@ from textwrap import TextWrapper
 import ttsvoices.longstring as ls
 import checkwifi
 import checkconfig 
+from loggingposts import log_post
 
 
 def main() -> None:
@@ -22,15 +23,15 @@ def main() -> None:
     toppost = redtop.reddittop()
     title = toppost[0]
     title = ls.preparetitle(title)
-
-    print(title[0])
     aufile.tts(toppost[1], toppost[0], title[0])
+    outputpath = rf"./outputs/{title[0]}.mp4",
     ev.finalvideo(
         rf".\assets\temp\{title[0]}\audio\{title[0]}.mp3",
-        rf".\outputs\{title[0]}.mp4",
+        rf"./outputs/{title[0]}.mp4",
         title[0],
     )
     if Path(rf".\outputs\{title[0]}.mp4").is_file():
+        log_post(toppost,outputpath)
         cl.cleanup(title[0])
 
 

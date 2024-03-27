@@ -27,10 +27,11 @@ class editvideo:
         self.backgroundvidmp3 = self.path.joinpath("tempbackground.mp4")
 
     def combine_audio(self, fps: int = 60) -> None:
+        print(self.background)
         background = mpe.VideoFileClip(str(self.backgroundvidtot))
         audio = mpe.AudioFileClip(str(self.audname))
         final_clip = background.set_audio(audio)
-        final_clip.write_videofile(str(self.outname), fps=fps)
+        final_clip.write_videofile(str(self.outname), fps=fps,threads=1, codec="libx264")
         background.close()
         audio.close()
         final_clip.close()
@@ -49,6 +50,7 @@ class editvideo:
             begintime + audio.duration,
             targetname=self.backgroundvidmp3,
         )
+        background.close()
         audio.close()
 
     def make_video_916(self) -> None:
