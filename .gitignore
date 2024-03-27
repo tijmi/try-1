@@ -62,3 +62,5 @@ docs/_build/
 # PyBuilder
 target/
 __pycache__/
+
+log.json
