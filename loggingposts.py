@@ -28,8 +28,18 @@ def log_post(submission: tuple, outputplace: str):
         json.dump(log, f, indent=4)
         
 
-def checkifdone(submission: tuple):
+def checkifdone(id:str):
     with open("log.json", "r") as f:
         log = json.load(f)
+
+    done = True
+
+    if id in log["made posts"].__str__():
+        print("post already made")
+        done = False
+
+    return done
+
+    
     
     

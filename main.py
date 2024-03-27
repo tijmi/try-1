@@ -16,7 +16,10 @@ from loggingposts import log_post
 def main() -> None:
     with open("config.toml", "r") as f:
         config = toml.load(f)
-
+    if checkwifi.internet_connection():
+        print("The Internet is connected.")
+    else:
+        raise RuntimeError('no internet connecton')
     cehckconfig = checkconfig.validation()
     cehckconfig.validatetoml()
     bg.downloadvid()

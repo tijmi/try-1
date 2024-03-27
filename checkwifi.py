@@ -6,7 +6,3 @@ def internet_connection():
         return True
     except requests.ConnectionError:
         return False    
-if internet_connection():
-    print("The Internet is connected.")
-else:
-    raise RuntimeError('no internet connecton')

@@ -5,6 +5,7 @@ import prawcore.exceptions as prerror
 from prawcore import NotFound
 import prawcore.exceptions as prerror
 import json
+from loggingposts import checkifdone
 
 
 
@@ -53,8 +54,9 @@ def reddittop() -> tuple:
     try:
         print("getting reddit toppost")
         submission = next(
-            x for x in reddit_api.subreddit(subreddit).hot() if not x.stickied
+            x for x in reddit_api.subreddit(subreddit).hot() if not x.stickied and checkifdone(x.id) == True
         )
+            
         print(submission)
         print(submission.selftext)
         return submission.title, submission.selftext, submission.id
