@@ -35,7 +35,6 @@ def checkifdone(id:str):
     done = True
 
     if id in log["made posts"].__str__():
-        print("post already made")
         done = False
 
     return done

@@ -17,7 +17,7 @@ ttsengines = [
     (lambda x: config["preferances"]["ttsengine"] == "pyttsx3", pyttsx),
     (
         lambda x: config["preferances"]["ttsengine"] == "streamlabspolly",
-        streamlabspolly,
+        streamlabspolly, 
     ),
     (lambda x: config["preferances"]["ttsengine"] == "tiktok", tiktoktts),
     (lambda x: config["preferances"]["ttsengine"] == "gtts", gtts),
@@ -26,9 +26,7 @@ ttsengines = [
 
 def tts(texts: str, titles: str, title: str) -> None:
     AudioSegment.converter = r"C:\PATH_Programs\ffmpeg.exe"
-    AudioSegment.converter = r"C:\PATH_Programs\ffmpeg.exe"
     tottext = preparetext(texts, titles)
-    path = Path(rf"./assets/temp/{title}/audio")
     path = Path(rf"./assets/temp/{title}/audio")
     path.mkdir(parents=True, exist_ok=True)
     for check, function in ttsengines:

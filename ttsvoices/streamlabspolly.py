@@ -30,7 +30,8 @@ def streamlabspolly(text, path, title, voice="Matthew"):
     url = "https://streamlabs.com/polly/speak"
     for idx, texts in enumerate(tqdm(text)):
         body = {"voice": voice, "text": texts, "service": "polly"}
-        response = requests.post(url, data=body)
+        headers = {"Referer" : "https://streamlabs.com/" }
+        response = requests.post(url,headers=headers, data=body)
         try:
             voice_data = requests.get(response.json()["speak_url"])
             if idx != 0:

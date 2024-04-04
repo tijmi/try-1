@@ -7,28 +7,27 @@ from moviepy.video.fx.all import crop
 import random
 import toml
 from pathlib import Path
+from subtitles import add_subtitle
 
 
 class editvideo:
-    def __init__(self, audname: str, outname: str, title: str):
+    def __init__(self, audname: str, title: str):
         with open("config.toml", "r") as f:
             config = toml.load(f)
 
+        self.title = title
+        self.path = Path(f"./assets/temp/{self.title}/")
         self.background = config["settings"]["background"]
         self.pathbackground = Path("./assets/backgrounds/video/")
         self.backgroundvid = self.pathbackground.joinpath(f"{self.background}.mp4")
         self.audname = audname
-        self.outname = outname
-        self.outfolder = Path(f"./outputs/")
-        self.outfolder.mkdir(parents=True, exist_ok=True)
-        self.title = title
-        self.path = Path(f"./assets/temp/{self.title}/")
+        self.outname = Path(f"./outputs/{title}.MP4")
         self.backgroundvidtot = self.path.joinpath(f"{self.background}.mp4")
         self.backgroundvidmp3 = self.path.joinpath("tempbackground.mp4")
+        self.withcations = f"assets/temp/{self.title}/{self.title}_captions.mp4"
 
     def combine_audio(self, fps: int = 60) -> None:
-        print(self.background)
-        background = mpe.VideoFileClip(str(self.backgroundvidtot))
+        background = mpe.VideoFileClip(str(self.withcations))
         audio = mpe.AudioFileClip(str(self.audname))
         final_clip = background.set_audio(audio)
         final_clip.write_videofile(str(self.outname), fps=fps,threads=1, codec="libx264")
@@ -40,10 +39,7 @@ class editvideo:
         AudioSegment.converter = r"C:\\PATH_Programs\\ffmpeg.exe"
         audio = mpe.AudioFileClip(str(self.audname))
         background = mpe.VideoFileClip(str(self.backgroundvid))
-        print(background.duration)
-        print(audio.duration)
         begintime = random.uniform(0, background.duration - audio.duration)
-        print(begintime)
         ffmpeg_extract_subclip(
             str(self.backgroundvid),
             begintime,
@@ -71,8 +67,11 @@ class editvideo:
         cropped_clip.close()
 
 
-def finalvideo(audname, outname, title) -> None:
-    video = editvideo(audname, outname, title)
+def finalvideo(audname, title,text) -> None:
+    with open("config.toml", "r") as f:
+            config = toml.load(f)
+    video = editvideo(audname, title)
     video.cut_video_to_mp3_length()
     video.make_video_916()
+    add_subtitle(config["settings"]["background"], audname,title,text)
     video.combine_audio()

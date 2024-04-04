@@ -14,8 +14,6 @@ from loggingposts import log_post
 
 
 def main() -> None:
-    with open("config.toml", "r") as f:
-        config = toml.load(f)
     if checkwifi.internet_connection():
         print("The Internet is connected.")
     else:
@@ -30,8 +28,7 @@ def main() -> None:
     outputpath = rf"./outputs/{title[0]}.mp4",
     ev.finalvideo(
         rf".\assets\temp\{title[0]}\audio\{title[0]}.mp3",
-        rf"./outputs/{title[0]}.mp4",
-        title[0],
+        title[0],toppost[1]
     )
     if Path(rf".\outputs\{title[0]}.mp4").is_file():
         log_post(toppost,outputpath)
