@@ -64,4 +64,5 @@ docs/_build/
 target/
 __pycache__/
 
-.log.json
+/log.json
+/config.toml
