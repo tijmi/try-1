@@ -32,6 +32,7 @@ class validation:
             else:
                 choise = input(
                     f"""please select a {setting}
+        
 """
                 )
                 self.config[catagory][setting] = choise

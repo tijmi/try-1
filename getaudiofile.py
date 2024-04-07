@@ -11,7 +11,7 @@ from ttsvoices.GTTS import gtts
 
 with open("config.toml", "r") as f:
     config = toml.load(f)
-
+ 
 
 ttsengines = [
     (lambda x: config["preferances"]["ttsengine"] == "pyttsx3", pyttsx),

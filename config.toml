@@ -1,9 +1,9 @@
 [settings]
-background = "woodworking"
+background = "painting"
 
 [preferances]
-subreddit = "askreddit"
-ttsengine = "pyttsx3"
+subreddit = "amItheasshole"
+ttsengine = ""
 
 [redditlogin]
 client_id = "D_CzpEhTMVe8AUpbPuNIsA"
