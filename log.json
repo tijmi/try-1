@@ -1,24 +1,4 @@
 {
     "made posts": [
-        {
-            "id": "1bw4c0e",
-            "title": "What's the best response to \"are you looking at my boobs?\"?",
-            "subreddit": "askreddit",
-            "time": "13:08:58",
-            "date": "04/05/2024",
-            "location": [
-                "./outputs/Whats_the_best_response_to_are.mp4"
-            ]
-        },
-        {
-            "id": "1bvur4h",
-            "title": "AITA For not letting my wife hijack a free vacation",
-            "subreddit": "amitheasshole",
-            "time": "14:00:46",
-            "date": "04/05/2024",
-            "location": [
-                "./outputs/AITA_For_not_letting_my_wife_h.mp4"
-            ]
-        }
     ]
 }
