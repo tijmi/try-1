@@ -17,7 +17,7 @@ class subtitles:
         self.promt = promt
 
     def transcribe(self):
-        model = WhisperModel("medium")
+        model = WhisperModel("tiny")
         segments, info = model.transcribe(self.audiofile, initial_prompt=self.promt)
         language = info[0]
         print("Transcription language", info[0])
